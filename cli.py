@@ -12,6 +12,12 @@ if __name__ == '__main__':
     char = 'X'
     logging.basicConfig(filename='logs/game.log', format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p' ,encoding='utf-8', level=logging.DEBUG)
     logging.info('New Game begin')
+        print("Choose Type of Game: 1. Single Player 2.Two-Player")
+    game_type=int(input("Option:"))
+    if game_type==1:
+        print("Single Player Mode selected!")
+    elif game_type==2:
+        print("Two Player Mode Selected!")
 
     while winner == None:
         print("-------------------------------------")

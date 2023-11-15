@@ -1,5 +1,5 @@
 import unittest
-import logic
+from logic import TicTacToeLogic
 
 
 class TestLogic(unittest.TestCase):
@@ -10,7 +10,7 @@ class TestLogic(unittest.TestCase):
             ['O', 'X', 'X'],
             ['X', 'O', 'O'],
         ]
-        self.assertEqual(logic.get_winner(board), 'Draw')
+        self.assertEqual(TicTacToeLogic.get_winner(self, board), 'Draw')
 
     def test_get_winner(self):
         board_1 = [
@@ -18,11 +18,11 @@ class TestLogic(unittest.TestCase):
             ['O', 'X', 'O'],
             ['X', 'O', 'O'],
         ]
-        self.assertEqual(logic.get_winner(board_1), 'X')
+        self.assertEqual(TicTacToeLogic.get_winner(self, board_1), 'X')
 
     def test_other_player(self):
         player = 'O'
-        self.assertEqual(logic.other_player(player=player),'X')
+        self.assertEqual(TicTacToeLogic.other_player(self,player=player),'X')
 
     def test_update_board(self):
         board = [
@@ -31,7 +31,7 @@ class TestLogic(unittest.TestCase):
             [None, 'O', None],
         ]
         test_case_board = ([['X', 'X', 'O'],[None, 'X', None],[None, 'O', None]],False)
-        self.assertEqual(logic.update_board(board,i=1,j=2,char='X'),test_case_board)
+        self.assertEqual(TicTacToeLogic.update_board(self, board,i=1,j=2,char='X'),test_case_board)
 
 if __name__ == '__main__':
     unittest.main()

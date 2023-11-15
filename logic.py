@@ -1,11 +1,11 @@
 # This file is where game logic lives. No input
 # or output happens here. The logic in this file
 # should be unit-testable.
-
+import random
 
 class TicTacToeLogic:
     def __init__(self):
-        pass
+        self.current_player = 'X'
 
     def make_empty_board(self):
         return [
@@ -52,6 +52,17 @@ class TicTacToeLogic:
             if None in row:
                 return None
         return 'Draw'  
+    
+
+    def make_bot_move(self, board):
+        available_moves = [(i, j) for i in range(3) for j in range(3) if board[i][j] is None]
+        if available_moves:
+            i, j = random.choice(available_moves)
+            board[i][j] = self.current_player
+            self.current_player = 'O' if self.current_player == 'X' else 'X'
+        else:
+            print("No available moves for the bot.")
+
 
 
     def other_player(self,player):
@@ -85,5 +96,25 @@ class TicTacToeLogic:
         print(board[0])
         print(board[1])
         print(board[2])
+    
+    def get_current_player(self):
+        return self.current_player
+    
+    def make_move(self, board, i, j):
+        i = i-1
+        j = j-1
+        if i < 0 or j < 0:
+            print("No such row or column")
+            return board
+        if i >=3 or j >=3:
+            print("No such row or column")
+            return board
+        if board[i][j] is None:
+            board[i][j] = self.current_player
+            self.current_player = 'O' if self.current_player == 'X' else 'X'
+            return board, False  # Move successful
+        else:
+            print("Illegal move. Try again.")
+            return board, True  # Move unsuccessful
 
 

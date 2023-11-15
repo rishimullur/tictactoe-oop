@@ -24,14 +24,19 @@ class TicTacToeCLI:
             print("Begin Turn!")
             print("It's", char, "turn!")
             self.logic.show_current_board(board=board)
-            print("Enter the row and column of the board you want to add the move to:")
-            i = int(input("Enter the row number (Options- 1 | 2 | 3):"))
-            j = int(input("Enter the column (Options- 1 | 2 | 3):"))
-            board, is_illegal = self.logic.update_board(board=board, i=i, j=j, char=char)
-            # if an illegal move happens, do not change the turn
-            if not is_illegal:
-                char = self.logic.other_player(player=char)
+            if self.logic.get_current_player() == 'X' or game_type == 2:
+                print("Enter the row and column of the board you want to add the move to:")
+                i = int(input("Enter the row number (Options- 1 | 2 | 3):"))
+                j = int(input("Enter the column (Options- 1 | 2 | 3):"))
+
+                board, is_illegal = self.logic.make_move(board=board, i=i, j=j)
+                # if an illegal move happens, do not change the turn
+                if not is_illegal:
+                    winner = self.logic.get_winner(board)
+            else:
+                self.logic.make_bot_move(board=board)
             winner = self.logic.get_winner(board)
+            print("Winner",winner)
             if winner == 'Draw':
                 print("Game Draw")
             else:

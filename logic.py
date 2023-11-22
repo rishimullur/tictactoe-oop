@@ -14,6 +14,17 @@ class TicTacToeLogic:
             [None, None, None],
         ]
 
+    def select_game_type(self):
+        print("Choose Type of Game: 1. Single Player 2.Two-Player")
+        game_type = int(input("Option:"))
+        if game_type == 1:
+            print("Single Player Mode selected!")
+            return game_type
+        elif game_type == 2:
+            print("Two Player Mode Selected!")
+            return game_type
+
+
 # Main logic for the winner of a given board
     def get_winner(self,board):
         """Determines the winner of the given board.
@@ -52,7 +63,6 @@ class TicTacToeLogic:
             if None in row:
                 return None
         return 'Draw'  
-    
 
     def make_bot_move(self, board):
         available_moves = [(i, j) for i in range(3) for j in range(3) if board[i][j] is None]
@@ -63,15 +73,12 @@ class TicTacToeLogic:
         else:
             print("No available moves for the bot.")
 
-
-
     def other_player(self,player):
         """Given the character for a player, returns the other player."""
         if player == 'X':
             return 'O'
         else:
             return 'X'
-
 
     def update_board(self,board,i,j,char):
         """Updates the playing board to account for the new move of a user"""
@@ -90,7 +97,6 @@ class TicTacToeLogic:
         else:
             print("Illegal move!")
             return board, True
-
 
     def show_current_board(self,board):
         print(board[0])
